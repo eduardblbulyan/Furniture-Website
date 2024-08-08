@@ -10,4 +10,9 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 def about(request):
-    return HttpResponse("About page")
+    context = {
+        "title": "Home - О нас",
+        "content": "Информация о магазине",
+        "text_on_page": "Какой то текст!!" # avoid hyphens (-) because template can not understand text-on-page
+    }
+    return render(request, 'main/about.html', context)
