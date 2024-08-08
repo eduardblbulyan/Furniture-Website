@@ -4,8 +4,8 @@ from django.shortcuts import render
 
 def index(request):
     context = {
-        "title": "Home",
-        "content": "Some content about furnitures"
+        "title": "Home - Главная",
+        "content": "Магазин мебели HOME"
     }
     return render(request, 'main/index.html', context)
 
