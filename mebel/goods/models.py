@@ -18,7 +18,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2,verbose_name="Цена")
-    discount = models.DecimalField(default=0.00, max_digits=7, decimal_places=2,verbose_name="Скидка в %")
+    discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2,verbose_name="Скидка в %")
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     category = models.ForeignKey(Categories,on_delete=models.CASCADE ,verbose_name='Категория')
 
@@ -29,3 +29,16 @@ class Product(models.Model):
         db_table = "product"
         verbose_name = "Продукт" 
         verbose_name_plural = "Продукты"
+
+# to get all data from DB in JSON file with these commands (fixture)
+# create fixtures/goods in root dir
+# cd root dir
+# >>> python3 mebel/manage.py dumpdata goods.Categories > fixtures/goods/cats.json
+# >>> python3 mebel/manage.py dumpdata goods.Product > fixtures/goods/prods.json
+
+# delete all migrations and db
+# create superuser again
+
+# then load all data again
+# >>> python3 mebel/manage.py loaddata fixtures/goods/prods.json
+# >>> python3 mebel/manage.py loaddata fixtures/goods/cats.json
