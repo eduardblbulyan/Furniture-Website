@@ -30,6 +30,19 @@ class Product(models.Model):
         verbose_name = "Продукт" 
         verbose_name_plural = "Продукты"
 
+
+# operator AND
+# Product.objects.filter(price__lt=200) & Product.objects.filter(price__gt=50).order_by("price")
+# or you can use this
+# Product.objects.filter(price__lt=200).filter(price__gt=50).order_by("price")
+
+# DJANGO reads from left to right
+
+# using OR
+# Product.objects.filter(price__lt=200) | Product.objects.filter(price__gt=50).order_by("price")
+
+
+
 # to get all data from DB in JSON file with these commands (fixture)
 # create fixtures/goods in root dir
 # cd root dir
