@@ -9,7 +9,7 @@ def catalog(request):
     }
     return render(request, "goods/catalog.html", context)
 
-def product(request):
-    categories = Categories.objects.all()
-    return render(request, "goods/product.html", {"categroies": categories})
+def product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    return render(request, "goods/product.html", {"product": product})
 
