@@ -30,6 +30,9 @@ class Product(models.Model):
         verbose_name = "Продукт" 
         verbose_name_plural = "Продукты"
 
+    def display_id(self):
+        return f"{self.id:05}" #for example 00025, 00007
+
 
 # operator AND
 # Product.objects.filter(price__lt=200) & Product.objects.filter(price__gt=50).order_by("price")
