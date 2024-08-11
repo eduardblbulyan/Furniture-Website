@@ -3,10 +3,8 @@ from .models import Categories, Product
 
 def catalog(request):
     goods = Product.objects.all()
-    categories = Categories.objects.all()
     context = { # temporary mock db emulation
         'title': 'Home - Catalog',
-        "categroies": categories,
         "goods": goods
     }
     return render(request, "goods/catalog.html", context)
