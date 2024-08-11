@@ -32,6 +32,12 @@ class Product(models.Model):
 
     def display_id(self):
         return f"{self.id:05}" #for example 00025, 00007
+    
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - self.price*self.discount/100,2)
+        else:
+            return self.price
 
 
 # operator AND
