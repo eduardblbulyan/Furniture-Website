@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from .models import Categories, Product
 
-def catalog(request):
-    goods = Product.objects.all()
+def catalog(request, category_slug):
+    if category_slug=="all":
+        goods = Product.objects.all()
+    else:
+        # if not goods.exists():
+        goods = get_list_or_404(Product.objects.filter(category__slug=category_slug))
+        
     context = { # temporary mock db emulation
         'title': 'Home - Catalog',
         "goods": goods
