@@ -7,3 +7,5 @@ urlpatterns = [
     path("", views.catalog, name="index"),
     path("product/<slug:product_slug>/", views.product, name="product"),
 ]
+
+# slug can convert number to its format so we need to put int before slug for working
