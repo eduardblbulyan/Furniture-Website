@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_list_or_404
+from django.core.paginator import Paginator
 from .models import Categories, Product
 
 def catalog(request, category_slug):
@@ -7,10 +8,13 @@ def catalog(request, category_slug):
     else:
         # if not goods.exists():
         goods = get_list_or_404(Product.objects.filter(category__slug=category_slug))
+
+    paginator = Paginator(goods, 3)
+    current_page = paginator.page(1)
         
     context = { # temporary mock db emulation
         'title': 'Home - Catalog',
-        "goods": goods
+        "goods": current_page
     }
     return render(request, "goods/catalog.html", context)
 
