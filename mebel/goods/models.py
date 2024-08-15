@@ -26,6 +26,7 @@ class Product(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["id"]
         db_table = "product"
         verbose_name = "Продукт" 
         verbose_name_plural = "Продукты"
