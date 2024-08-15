@@ -2,7 +2,11 @@ from django.shortcuts import render, get_list_or_404
 from django.core.paginator import Paginator
 from .models import Categories, Product
 
-def catalog(request, category_slug, page=1):
+def catalog(request, category_slug):
+    
+    page = int(request.GET.get('page', 1)) # if not `page` key, set default 1
+
+
     if category_slug=="all":
         goods = Product.objects.all()
     else:
