@@ -5,18 +5,18 @@ from .models import Categories, Product
 def catalog(request, category_slug):
     
     page = int(request.GET.get('page', 1)) # if not `page` key, set default 1
-    on_sale = int(request.GET.get('on_sale', None)) # return None if no data
-    order_by = int(request.GET.get('order_by', None)) # get by name of input
+    on_sale = request.GET.get('on_sale', None) # return None if no data
+    order_by = request.GET.get('order_by', None) # get by name of input
 
     if category_slug=="all":
         goods = Product.objects.all()
     else:
         # if not goods.exists():
-        goods = get_list_or_404(Product.objects.filter(category__slug=category_slug))
+        goods = Product.objects.filter(category__slug=category_slug)
 
     if on_sale:
         goods = goods.filter(discount__gt=0)
-    if order_by:
+    if order_by and order_by != "default":
         goods = goods.order_by(order_by)
 
     paginator = Paginator(goods, 3)
